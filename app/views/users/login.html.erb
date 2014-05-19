@@ -1,0 +1,12 @@
+<%= form_tag("/users/verify", method: "post") do %>
+  <%= label_tag(:mailid, "E-Mail:") %>
+  <%= email_field_tag(:mailid) %>
+  <%= label_tag(:password, "Password:") %>
+  <%= password_field_tag(:password) %>
+  <%= submit_tag("Login") %>
+<% end %>
+
+
+<%= session[:username] %>
+
+<button id="show" >Display</button>

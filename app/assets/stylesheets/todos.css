@@ -1,0 +1,11 @@
+// Place all the styles related to the Todos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.listbox{
+	width:200px;
+	height:300px;
+	border:1px solid black;
+	background-color:#444;
+}

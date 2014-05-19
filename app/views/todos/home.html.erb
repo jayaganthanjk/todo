@@ -1,0 +1,87 @@
+<form method="post" action="return false" onsubmit="javascript:return false;" >
+<input type="text" id="todoactivity" style="width: 319px;
+padding: 6px;
+border: none;
+font-weight: bold;
+align: center;
+font-size: 20px;
+border-bottom: 2px solid black;border-shadow:none;
+font: bold 16px 'lucida sans', 'trebuchet MS', 'Tahoma';" placeholder="ToDo Activity.."><br>
+<input type="submit" id="submitactivity" style="border: none;
+background-color: transparent;
+font: bold 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
+border-bottom: 2px solid blueviolet;" ><br>
+	</form> 
+
+
+<Style>
+#close:hover{
+	background-color:#c1c1c1;
+}
+#close{
+	width: 16px;
+height: 16px;
+border: 1px solid black;
+border-radius: 9px;
+text-align: center;
+font: bold 10px 'lucida sans', 'trebuchet MS', 'Tahoma';
+cursor:default;
+z-index:1000;
+}
+.listbox{
+		width: 295px;
+margin-left: 10px;
+float: left;
+padding: 10px;
+
+height: 100px;
+margin-top: 10px;
+
+background-color: #3ff;
+text-transform: capitalize;
+font: bold 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
+-webkit-box-shadow:  3px 3px 14px 0px rgba(0,0,0,0.75);
+-moz-box-shadow:  3px 3px 14px 0px rgba(0,0,0,0.75);
+box-shadow:  3px 3px 14px 0px rgba(0,0,0,0.75);
+}
+input:focus{
+	outline:none;
+}
+#timeview{
+	float: right;
+margin-top: -1px;
+font-style: italic;
+font-weight: normal;
+cursor:default;
+}
+</style>
+<br>
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log("loading content");
+	function loadlist()
+	{
+	console.log("Showing list..");
+		$.getJSON("/todos/listactivities",function(data){
+			console.log("success listing..");
+			for(i=0;i<data.length;i++)
+			{
+				console.log(data[i].created_at);
+				var checck=$('#close').clone();
+				var newlist = $('#list').clone().addClass("listbox").attr('data-id',data[i].id);
+				newlist.html('<div id="close" style="float right;align:right;" data-id="'+data[i].id+'">X</div><br>'+data[i].job);
+				newlist.prependTo('#todolist');
+				checck.html('<p>Hi</p>');
+				console.log(newlist.html()+"check");
+
+			}
+		});
+	}
+	loadlist();
+});
+
+
+</script>
+<div id="list"></div>
+<div id="todolist">	
+</div>
